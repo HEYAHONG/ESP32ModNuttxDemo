@@ -1,0 +1,2 @@
+
+include $(wildcard $(APPDIR)/main/*/Make.defs)

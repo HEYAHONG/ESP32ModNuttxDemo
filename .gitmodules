@@ -1,0 +1,12 @@
+[submodule "tools/esptool"]
+	path = tools/esptool
+	url = ../../espressif/esptool.git
+[submodule "tools/esp-idf"]
+	path = tools/esp-idf
+	url = ../../espressif/esp-idf.git
+[submodule "nuttx"]
+	path = nuttx
+	url = ../../HEYAHONG/nuttx.git
+[submodule "apps"]
+	path = apps
+	url = ../../HEYAHONG/nuttx-apps

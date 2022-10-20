@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#检查工具是否存在,$1为待检查的工具名。
+function CheckTool
+{
+	[  -n "$1"  ] ||
+	{
+		echo -e  "\033[41;37mCheckTool 参数错误!!\r\n\033[40;37m";
+		return 255;
+	};
+	ToolPath=`which $1`;
+	[ -e "$ToolPath" ] ||
+	{
+		 echo -e "\033[41;37m$1 不存在，请先安装此工具\r\n\033[40;37m";
+		 return 255;
+	};
+	return 0;
+}
+
+#检查python3
+CheckTool python
+[ $? -eq 0 ] || exit;
+#调用python3
+python3 $*
