@@ -1,1 +1,5 @@
+main/Kconfig
 *.o
+.depend
+Make.dep
+.kconfig
