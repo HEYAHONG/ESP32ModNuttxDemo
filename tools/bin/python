@@ -18,7 +18,7 @@ function CheckTool
 }
 
 #检查python3
-CheckTool python
+CheckTool python3
 [ $? -eq 0 ] || exit;
 #调用python3
 python3 $*
