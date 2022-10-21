@@ -67,3 +67,10 @@ make menuconfig
 make clean
 ```
 
+### 清理所有
+
+此清理除了清理生成的.o文件,还会清理下载的文件。对于处理莫名奇妙出现的编译错误非常有用，清理完成后需要在新的终端执行bootstrap.sh。
+
+```bash
+make distclean
+```

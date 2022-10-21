@@ -19,6 +19,7 @@ clean:checkconfig
 .PHONY:  distclean
 distclean:checkconfig
 	@${MAKE} -C nuttx distclean
+	@echo  "请退出当前终端并在新打开的终端中执行bootstrap.sh"
 
 .PHONY:  menuconfig
 menuconfig:checkconfig
