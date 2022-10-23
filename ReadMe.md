@@ -74,3 +74,5 @@ make clean
 ```bash
 make distclean
 ```
+
+若此命令仍然不能解决问题（如Kconfig有误导致路径错误）,请直接删除nuttx/.config并关闭终端，然后在新的终端执行bootstrap.sh。
