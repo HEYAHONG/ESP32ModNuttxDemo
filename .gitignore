@@ -3,3 +3,4 @@ main/Kconfig
 .depend
 Make.dep
 .kconfig
+spiffs.bin

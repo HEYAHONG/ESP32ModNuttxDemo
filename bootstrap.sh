@@ -104,7 +104,7 @@ git submodule update --init --recursive
 source ./export.sh
 cd ${ROOT_PATH}
 
-export PATH=${ROOT_PATH}/tools/bin/:${ROOT_PATH}/tools/esptool/:$PATH
+export PATH=${ROOT_PATH}/tools/bin/:${ROOT_PATH}/tools/esptool/:${ROOT_PATH}/tools/esp-idf/components/spiffs/:$PATH
 
 echo -e  "\033[44;37mSDK环境初始化完毕!\033[40;37m";
 

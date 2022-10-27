@@ -1,8 +1,17 @@
 
+include .config
+
 ESPTOOL_PORT ?= /dev/ttyUSB0
 ESPTOOL_BAUD ?= 115200
 ESPTOOL_BINDIR ?= $(shell pwd)/boot/
 
+ifeq ($(CONFIG_ESP32_SPIFLASH),y)
+SPIFFSGEN ?= spiffsgen.py
+SPIFFSROOT ?= $(shell pwd)/spiffs
+SPIFFSBIN ?= $(shell pwd)/spiffs.bin
+SPIFFSOBJNAMELEN ?=  $(shell expr $(CONFIG_SPIFFS_NAME_MAX) + 1 )
+SPIFFSGENFLAGS := --follow-symlinks --meta-len 0  --obj-name-len ${SPIFFSOBJNAMELEN} ${CONFIG_ESP32_STORAGE_MTD_SIZE} "${SPIFFSROOT}"  "${SPIFFSBIN}"
+endif
 .PHONY:  all
 
 all:checkconfig
@@ -10,6 +19,13 @@ all:checkconfig
 
 .PHONY:  flash
 flash:checkconfig
+ifeq ($(CONFIG_ESP32_SPIFLASH),y)
+#生成spiffs.bin
+	${SPIFFSGEN} ${SPIFFSGENFLAGS}
+#烧录spiffs.bin
+	@esptool.py -c esp32 -p ${ESPTOOL_PORT}  -b ${ESPTOOL_BAUD}  write_flash -fs detect ${CONFIG_ESP32_STORAGE_MTD_OFFSET} ${SPIFFSBIN}
+endif
+#执行烧录
 	@${MAKE} -C nuttx flash ESPTOOL_PORT=${ESPTOOL_PORT} ESPTOOL_BAUD=${ESPTOOL_BAUD} ESPTOOL_BINDIR=${ESPTOOL_BINDIR}
 
 .PHONY:  clean
@@ -24,7 +40,7 @@ distclean:checkconfig
 .PHONY:  menuconfig
 menuconfig:checkconfig
 	@${MAKE} -C nuttx menuconfig
-	@cp ${PROJECT_PATH}/nuttx/.config  ${PROJECT_PATH}/
+	@cp -rf ${PROJECT_PATH}/nuttx/.config  ${PROJECT_PATH}/
 
 .PHONY:  checkconfig
 checkconfig:check
