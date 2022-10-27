@@ -1,1 +1,4 @@
-
+config APP_MAIN
+    bool 
+    default y
+    select SYSTEM_SYSTEM
