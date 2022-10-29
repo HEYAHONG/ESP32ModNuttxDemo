@@ -15,7 +15,24 @@
   ```bash
    git submodule update --init --recursive
   ```
-  
+## SPIFFS
+
+ spiffs是一个用于嵌入式目标上的SPI NOR flash设备的文件系统。挂载spiffs后可直接以文件的形式进行数据的存储(可读可写)。
+
+### 预置的镜像
+
+可预先将一些文件放入文件系统,可直接在挂载后访问(可读可写)。
+
+目录:[spiffs](spiffs)
+
+### 挂载
+
+暂时并未自动挂载。设备文件为/dev/esp32flash(需要在Kconfig中启用SPI Flash(CONFIG_ESP32_SPIFLASH))。
+
+```bash
+#将/dev/esp32flash挂载至/var/esp,可在sh中执行以下指令,挂载后即可在目录访问。
+mount -t spiffs /dev/esp32flash /var/esp
+```
 
 # 编译环境
 
