@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "init.h"
 static bool isinit = false;
 int main(int argc, FAR char *argv[])
 {
@@ -20,14 +21,17 @@ int main(int argc, FAR char *argv[])
 
     }
 
-    //执行nsh
-    printf("now start shell!\r\n");
-    system("nsh");
 
-    //防止因exit而导致shell退出
+    //执行nsh（直接退出）
+    system("nsh -c exit");
+
+    //执行初始化
+    init();
+
+
+    //打开shell
     while (true)
     {
-        printf("shell exited,now start shell!\r\n");
         system("sh");
     }
     return 0;

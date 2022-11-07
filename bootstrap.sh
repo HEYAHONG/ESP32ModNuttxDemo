@@ -104,7 +104,7 @@ git submodule update --init --force --recursive
 source ./export.sh
 cd ${ROOT_PATH}
 
-export PATH=${ROOT_PATH}/tools/bin/:${ROOT_PATH}/tools/esptool/:${ROOT_PATH}/tools/esp-idf/components/spiffs/:$PATH
+export PATH=${ROOT_PATH}/tools/bin/:${ROOT_PATH}/tools/esptool/:${ROOT_PATH}/tools/esp-idf/components/spiffs/:{ROOT_PATH}/tools/esp-idf/tools:$PATH
 
 echo -e  "\033[44;37mSDK环境初始化完毕!\033[40;37m";
 
@@ -163,4 +163,4 @@ echo -e "\033[44;37m准备目录完毕!\033[40;37m";
 
 echo -e "\033[44;37m环境初始化完毕!请使用make命令编译!\033[40;37m";
 
-${SHELL}
+exec ${SHELL}

@@ -79,6 +79,27 @@ make flash
 make flash ESPTOOL_PORT=串口设备 ESPTOOL_BAUD=波特率
 ```
 
+### 调试
+
+除了自行使用串口调试工具,也可使用以下命令调试。注意:烧录时需要手动关闭调试相关进程。
+
+```bash
+#monitor,同esp-idf的monitor工具，由于回显问题，此工具不能正确显示命令。
+make monitor
+#使用ESPTOOL_PORT指定烧录端口，不指定默认为/dev/ttyUSB0。 
+#使用ESPTOOL_BAUD指定烧录端口，不指定默认为115200。
+make monitor ESPTOOL_PORT=串口设备 ESPTOOL_BAUD=波特率
+
+#putty,若安装了putty且处于桌面环境，可使用putty。
+make putty
+#使用ESPTOOL_PORT指定烧录端口，不指定默认为/dev/ttyUSB0。 
+#使用ESPTOOL_BAUD指定烧录端口，不指定默认为115200。
+make putty ESPTOOL_PORT=串口设备 ESPTOOL_BAUD=波特率
+
+```
+
+
+
 ### Kconfig配置
 
 ```bash

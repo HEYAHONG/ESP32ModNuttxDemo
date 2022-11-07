@@ -12,10 +12,26 @@ SPIFFSBIN ?= $(shell pwd)/spiffs.bin
 SPIFFSOBJNAMELEN ?=  $(shell expr $(CONFIG_SPIFFS_NAME_MAX) + 1 )
 SPIFFSGENFLAGS := --follow-symlinks --meta-len 0  --obj-name-len ${SPIFFSOBJNAMELEN} ${CONFIG_ESP32_STORAGE_MTD_SIZE} "${SPIFFSROOT}"  "${SPIFFSBIN}"
 endif
-.PHONY:  all
 
+.PHONY:  all
 all:checkconfig
 	@${MAKE} -C nuttx
+
+.PHONY:  monitor
+monitor:checkconfig
+	@idf_monitor.py -p ${ESPTOOL_PORT}  -b ${ESPTOOL_BAUD}
+
+.PHONY:  putty
+putty : checkconfig
+ifeq (${DISPLAY},)
+	@echo 当前不处于桌面环境，不可使用putty.
+	@exit 2
+endif
+ifeq ($(shell which putty),)
+	@echo 未安装putty，请安装putty.
+	@exit 2
+endif
+	@putty -serial -sercfg ${ESPTOOL_BAUD},8,n,1 ${ESPTOOL_PORT} 
 
 .PHONY:  flash
 flash:checkconfig
