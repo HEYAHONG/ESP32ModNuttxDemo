@@ -1,0 +1,4 @@
+
+CONFIGURED_APPS += $(APPDIR)/main/rc
+CFLAGS += ${shell $(INCDIR) "$(CC)" $(APPDIR)/main/rc}
+CXXFLAGS += ${shell $(INCDIR) "$(CC)" $(APPDIR)/main/rc}
