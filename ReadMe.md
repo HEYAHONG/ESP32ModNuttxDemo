@@ -56,10 +56,10 @@
 
 ### 挂载
 
-暂时并未自动挂载。设备文件为/dev/esp32flash(需要在Kconfig中启用SPI Flash(CONFIG_ESP32_SPIFLASH))。
+开机时将自动将/dev/esp32flash挂载至/var/esp。设备文件为/dev/esp32flash(需要在Kconfig中启用SPI Flash(CONFIG_ESP32_SPIFLASH))。
 
 ```bash
-#将/dev/esp32flash挂载至/var/esp,可在sh中执行以下指令,挂载后即可在目录访问。
+#若因某种原因被卸载（如手动卸载）,可在sh中执行以下指令,将/dev/esp32flash挂载至/var/esp,挂载后即可在目录访问。
 mount -t spiffs /dev/esp32flash /var/esp
 ```
 
