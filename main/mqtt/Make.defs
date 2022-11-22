@@ -1,0 +1,4 @@
+
+CONFIGURED_APPS += $(APPDIR)/main/mqtt
+CFLAGS += ${shell $(INCDIR) "$(CC)" $(APPDIR)/main/mqtt}
+CXXFLAGS +=   ${shell $(INCDIR) "$(CC)" $(APPDIR)/main/mqtt}

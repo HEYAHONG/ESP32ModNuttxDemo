@@ -4,6 +4,9 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "init.h"
+#if CONFIG_APP_MAIN_MQTTCLIENT  == 1
+#include "appmqtt.h"
+#endif
 static bool isinit = false;
 int main(int argc, FAR char *argv[])
 {
@@ -28,6 +31,9 @@ int main(int argc, FAR char *argv[])
     //执行初始化
     init();
 
+#if CONFIG_APP_MAIN_MQTTCLIENT == 1
+    MQTT_Init();
+#endif
 
     //打开shell
     while (true)

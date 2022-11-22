@@ -1,0 +1,41 @@
+config APP_MAIN_MQTTCLIENT
+    bool "MQTT Client"
+    default y
+    select NETUTILS_MQTTC
+    select NETUTILS_NETLIB
+
+if APP_MAIN_MQTTCLIENT
+
+config APP_MAIN_MQTTCLIENT_SSL
+    bool "MQTT Client With SSL"
+    default y
+    select NETUTILS_MQTTC_WITH_MBEDTLS
+    select CRYPTO_MBEDTLS
+
+config APP_MAIN_MQTTCLIENT_HOST
+    string "MQTT Broker Host"
+    default "mqtt.hyhsystem.cn"
+    
+config APP_MAIN_MQTTCLIENT_PORT
+    int "MQTT Broker Port"
+    default 8883
+
+config APP_MAIN_MQTTCLIENT_SENDBUFF_SIZE
+    int "MQTT Broker SendBuff Size"
+    default 2048
+
+config APP_MAIN_MQTTCLIENT_RECVBUFF_SIZE
+    int "MQTT Broker RecvBuff Size"
+    default 1024
+
+choice APP_MAIN_MQTTCLIENT_PROTOCOL
+    prompt "MQTT Protocol"
+    default APP_MAIN_MQTTCLIENT_PROTOCOL_HELLO
+
+config APP_MAIN_MQTTCLIENT_PROTOCOL_HELLO
+    bool "hello"
+    
+
+endchoice
+
+endif 

@@ -5,8 +5,9 @@ PRIORITY  = 100
 STACKSIZE = CONFIG_DEFAULT_TASK_STACKSIZE
 MODULE    = y
 
+CXXEXT = .cpp
 
-MAINSRC = main.c
+MAINSRC = main.cpp
 
 CSRCS = init.c
 
