@@ -5,6 +5,13 @@
 #include <stdio.h>
 #include "RC.h"
 
+#ifdef CONFIG_NETUTILS_MQTTC_WITH_MBEDTLS
+//MQTT-C库已启用SSL，则CONFIG_APP_MAIN_MQTTCLIENT_SSL必须被启用
+#ifndef CONFIG_APP_MAIN_MQTTCLIENT_SSL
+#error  当MQTT-C库已启用SSL时必须启用APP_MAIN_MQTTCLIENT_SSL
+#endif // CONFIG_APP_MAIN_MQTTCLIENT_SSL
+#endif // ONFIG_NETUTILS_MQTTC_WITH_MBEDTLS
+
 #include <mqtt.h>
 #ifdef CONFIG_APP_MAIN_MQTTCLIENT_SSL
 #include "mbedtls_sockets.h"
