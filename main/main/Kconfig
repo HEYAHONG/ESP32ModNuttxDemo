@@ -2,3 +2,4 @@ config APP_MAIN
     bool 
     default y
     select SYSTEM_SYSTEM
+    select WIRELESS_WAPI
