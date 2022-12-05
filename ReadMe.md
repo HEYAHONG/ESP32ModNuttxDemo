@@ -63,6 +63,10 @@
 mount -t spiffs /dev/esp32flash /var/esp
 ```
 
+## 测试截图
+
+![ESP32ModNuttxDemo-1](doc/image/ESP32ModNuttxDemo-1.png)
+
 # 编译环境
 
 本工程主要支持Linux / WSL。注意:由于nuttx编译过程中需要下载大量数据,请保持网络通畅(尤其是[github.com](https://github.com))。
